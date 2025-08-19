@@ -12,9 +12,10 @@
 
 
 FROM golang:1.18 AS builder
+RUN go get github.com/codegangsta/ngroni
+RUN go get github.com/gorilla/mux
+RUN go get github.com/xyproto/simpleredis/v2
 COPY main.go .
-RUN go mod init guestbook
-RUN go mod tidy
 RUN go build -o main main.go
 
 FROM ubuntu:18.04
